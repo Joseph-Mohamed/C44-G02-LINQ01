@@ -1,5 +1,3 @@
-﻿using System.Reflection.Emit;
-
 namespace SessionOneLINQ
 {
     internal class Program
@@ -251,19 +249,85 @@ namespace SessionOneLINQ
 
             // Use linq operators against sequance
 
-            //****** L2Object ********
-            List<int> number = [2, 12, 3, 4, 5, 6]; // static sequance
-           var evenNumbers = number.Where(p => p % 2 == 0);//call as extention method [list]
-            var evenNumbers02 = Enumerable.Where(number , p => p % 2 == 0);//call as extention method [list]
-            foreach (var num in evenNumbers)
-            {
-                Console.WriteLine(num);
-            }
-            Console.WriteLine("****************");
-            foreach (var num in evenNumbers02)
-            {
-                Console.WriteLine(num);
-            }
+            // //****** L2Object ********
+            // List<int> number = [2, 12, 3, 4, 5, 6]; // static sequance
+            //var evenNumbers = number.Where(p => p % 2 == 0);//call as extention method [list]
+            // var evenNumbers02 = Enumerable.Where(number , p => p % 2 == 0);//call as extention method [list]
+            // foreach (var num in evenNumbers)
+            // {
+            //     Console.WriteLine(num);
+            // }
+            // Console.WriteLine("****************");
+            // foreach (var num in evenNumbers02)
+            // {
+            //     Console.WriteLine(num);
+            // }
+            #endregion
+
+
+            #region LINQ synax
+
+            //************* Flunet /method syntax ********
+            // List<int> num = [1,2,3,4,5,6,7];
+            ////*******  1. call linq operator as staitic method *******
+            //var evenNum = Enumerable.Where(num, x => x % 2 == 0);
+            ////********* 2. call linq operator as sextantion methodss **********
+            //evenNum = num.Where(num => num % 2 == 0);
+            //foreach (var i in evenNum)
+            //{
+            //    Console.WriteLine(i);
+            //}
+
+
+            //********** Quary syntax - [Like sql server style] *********
+            /* 
+             
+             select *
+            from numbers n
+            where n%2 ==0
+             */
+            // execution order ==> 1} from , 2} where , 3} select
+            // quary syntax ==> must start from , must end with select or groupby
+            //var evenNum = from n in num
+            //              where n%2 ==0
+            //              select n;
+            //foreach (var i in evenNum)
+            //{
+            //    Console.WriteLine(i);
+            //}
+
+
+
+
+            #endregion
+
+
+            #region LINQ Exection way
+
+            //1]******** execution deffered or lazy execution
+            //[latest version of data] *********
+            //where ==> deffered [LAzy linq operators]
+
+            //List<int> numbers = [1,2,3,4,5,6,7,8,9];
+            //var oddNum = numbers.Where(p => p % 2 == 1);
+            //numbers.AddRange([12, 12, 11, 13, 14]);
+            //foreach (var i in oddNum)
+            //{
+            //    Console.WriteLine(i);
+            //}
+
+
+            //2}***** execution immetidate or greedy execution
+            //[current version of data] ************
+            ////1} Aggregate Operators , 2} Element Operators , 3} casting Operators
+            //List<int> numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+            //var oddNum = numbers.Where(p => p % 2 == 1).ToList();// immediate
+            //numbers.AddRange([12, 12, 11, 13, 14]);
+            //foreach (var i in oddNum)
+            //{
+            //    Console.WriteLine(i);
+            //}
+
             #endregion
 
 
